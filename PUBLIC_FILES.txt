@@ -1,0 +1,27 @@
+# The publication audit rejects every file not explicitly listed here.
+.github/workflows/tests.yml
+.gitignore
+LICENSE.md
+PRIVACY.md
+PUBLIC_FILES.txt
+README.md
+SECURITY.md
+docs/ARCHITECTURE.md
+docs/PUBLICATION_CHECKLIST.md
+docs/REDDIT_API_APPLICATION.md
+docs/REDDIT_API_USE.md
+examples/LeadAssessmentCard.tsx
+pyproject.toml
+src/marginscout_public/__init__.py
+src/marginscout_public/api.py
+src/marginscout_public/jobs.py
+src/marginscout_public/model_routing.py
+src/marginscout_public/reddit_client.py
+src/marginscout_public/retention.py
+src/marginscout_public/scoring.py
+tests/test_api.py
+tests/test_jobs.py
+tests/test_model_routing.py
+tests/test_reddit_client.py
+tests/test_scoring.py
+tools/audit_release.py
