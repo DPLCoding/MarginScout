@@ -5,7 +5,7 @@ export interface AssessmentFactor {
   contribution: string;
 }
 
-export interface LeadAssessmentCardProps {
+export interface OpportunityAssessmentCardProps {
   title: string;
   sourceLabel: string;
   score: number;
@@ -16,7 +16,7 @@ export interface LeadAssessmentCardProps {
   onReview: () => void;
 }
 
-const tone: Record<LeadAssessmentCardProps["recommendation"], string> = {
+const tone: Record<OpportunityAssessmentCardProps["recommendation"], string> = {
   strong: "border-emerald-400/40 bg-emerald-400/10 text-emerald-100",
   review: "border-amber-300/40 bg-amber-300/10 text-amber-100",
   weak: "border-zinc-500/40 bg-zinc-500/10 text-zinc-200",
@@ -32,10 +32,10 @@ function Stat({ label, children }: { label: string; children: ReactNode }) {
 }
 
 /**
- * Standalone portfolio excerpt. The production component also renders source
+ * Standalone portfolio excerpt. The complete private component also renders source
  * provenance and persisted run links; those private contracts are omitted.
  */
-export function LeadAssessmentCard({
+export function OpportunityAssessmentCard({
   title,
   sourceLabel,
   score,
@@ -44,7 +44,7 @@ export function LeadAssessmentCard({
   factors,
   warnings = [],
   onReview,
-}: LeadAssessmentCardProps) {
+}: OpportunityAssessmentCardProps) {
   const boundedScore = Math.max(0, Math.min(100, score));
 
   return (
@@ -60,11 +60,11 @@ export function LeadAssessmentCard({
       </header>
 
       <dl className="mt-5 grid grid-cols-2 gap-4">
-        <Stat label="Lead score">{boundedScore.toFixed(1)}</Stat>
+        <Stat label="Opportunity score">{boundedScore.toFixed(1)}</Stat>
         <Stat label="Confidence">{Math.max(0, Math.min(100, confidence)).toFixed(1)}%</Stat>
       </dl>
 
-      <div className="mt-4 h-2 overflow-hidden rounded bg-zinc-800" aria-label={`Lead score ${boundedScore} out of 100`}>
+      <div className="mt-4 h-2 overflow-hidden rounded bg-zinc-800" aria-label={`Opportunity score ${boundedScore} out of 100`}>
         <div className="h-full bg-sky-400" style={{ width: `${boundedScore}%` }} />
       </div>
 
@@ -96,4 +96,3 @@ export function LeadAssessmentCard({
     </article>
   );
 }
-

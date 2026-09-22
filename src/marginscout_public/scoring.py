@@ -9,8 +9,8 @@ from typing import Mapping
 _HUNDRED = Decimal("100")
 _WEIGHTS: Mapping[str, Decimal] = MappingProxyType(
     {
-        # Illustrative public weights, not the private production configuration.
-        "buyer_intent": Decimal("0.30"),
+        # Illustrative public weights, not the complete private configuration.
+        "request_intent": Decimal("0.30"),
         "service_fit": Decimal("0.20"),
         "specificity": Decimal("0.15"),
         "recency": Decimal("0.15"),
@@ -22,8 +22,8 @@ _WEIGHTS: Mapping[str, Decimal] = MappingProxyType(
 
 
 @dataclass(frozen=True)
-class LeadSignals:
-    buyer_intent: Decimal
+class OpportunitySignals:
+    request_intent: Decimal
     service_fit: Decimal
     specificity: Decimal
     recency: Decimal
@@ -43,7 +43,7 @@ class ScoreFactor:
 
 
 @dataclass(frozen=True)
-class LeadScoreResult:
+class OpportunityScoreResult:
     score: Decimal
     confidence: Decimal
     label: str
@@ -51,11 +51,11 @@ class LeadScoreResult:
     applied_caps: tuple[str, ...]
 
 
-def score_lead(signals: LeadSignals) -> LeadScoreResult:
+def score_opportunity(signals: OpportunitySignals) -> OpportunityScoreResult:
     """Calculate an explainable score; no model output or hidden state is used."""
 
     values = {
-        "buyer_intent": signals.buyer_intent,
+        "request_intent": signals.request_intent,
         "service_fit": signals.service_fit,
         "specificity": signals.specificity,
         "recency": signals.recency,
@@ -80,8 +80,8 @@ def score_lead(signals: LeadSignals) -> LeadScoreResult:
     )
     raw_score = sum((factor.contribution for factor in factors), Decimal("0"))
     caps: list[tuple[Decimal, str]] = []
-    if signals.buyer_intent < Decimal("25"):
-        caps.append((Decimal("35"), "buyer intent is not established"))
+    if signals.request_intent < Decimal("25"):
+        caps.append((Decimal("35"), "service-request intent is not established"))
     if signals.fulfillment_readiness < Decimal("20"):
         caps.append((Decimal("65"), "fulfillment coverage is not ready"))
     if signals.material_risk_count >= 2:
@@ -101,11 +101,10 @@ def score_lead(signals: LeadSignals) -> LeadScoreResult:
     else:
         label = "weak"
 
-    return LeadScoreResult(
+    return OpportunityScoreResult(
         score=score,
         confidence=confidence,
         label=label,
         factors=factors,
         applied_caps=tuple(reason for _, reason in caps),
     )
-

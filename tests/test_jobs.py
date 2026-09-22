@@ -45,7 +45,7 @@ class JobServiceTests(unittest.TestCase):
     def test_claim_and_complete_require_worker_ownership(self) -> None:
         job, _ = self.service.enqueue(
             idempotency_key="assessment:1",
-            job_type="lead_assessment",
+            job_type="opportunity_assessment",
             payload={},
             now=NOW,
         )
@@ -62,7 +62,7 @@ class JobServiceTests(unittest.TestCase):
     def test_failure_retries_then_becomes_terminal(self) -> None:
         job, _ = self.service.enqueue(
             idempotency_key="assessment:retry",
-            job_type="lead_assessment",
+            job_type="opportunity_assessment",
             payload={},
             max_attempts=2,
             now=NOW,
@@ -94,4 +94,3 @@ class JobServiceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

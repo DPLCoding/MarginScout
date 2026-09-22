@@ -63,7 +63,7 @@ class ApprovalScope:
     effective_at: datetime
     expires_at: datetime
     permitted_communities: frozenset[str]
-    commercial_use_approved: bool
+    intended_use_approved: bool
     max_requests_per_hour: int
     max_items_per_request: int
     retention_hours: int
@@ -72,8 +72,8 @@ class ApprovalScope:
     def assert_current(self, *, community: str, now: datetime) -> None:
         if not self.approval_reference.strip() or not self.approved_by.strip():
             raise ApprovalRequiredError("A written approval reference and approver are required")
-        if not self.commercial_use_approved:
-            raise ApprovalRequiredError("Written commercial-use approval is required")
+        if not self.intended_use_approved:
+            raise ApprovalRequiredError("Written approval for the stated use is required")
         if now.tzinfo is None:
             raise ApprovalRequiredError("Approval checks require a timezone-aware timestamp")
         if not (self.effective_at <= now < self.expires_at):
@@ -306,4 +306,3 @@ def _optional_float(value: str | None) -> float | None:
         return float(value)
     except ValueError:
         return None
-

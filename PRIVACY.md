@@ -7,9 +7,9 @@
 
 This policy describes how the MarginScout project handles information in its public engineering showcase and in the proposed Reddit API integration.
 
-MarginScout is currently a private, single-operator decision-support application. **Live Reddit collection is not active or approved.** The implemented demonstration uses operator-supplied content and synthetic fixtures that do not represent real people and do not make Reddit network requests.
+MarginScout is currently a personal software engineering project operated privately by one developer. It is an external application with its own private dashboard and is not sold, hosted for other users, or offered as a service. **Live Reddit collection is not active or approved.** The implemented demonstration uses developer-supplied content and synthetic fixtures that do not represent real people and do not make Reddit network requests.
 
-If Reddit grants written approval for live commercial API use, MarginScout will activate only the access and data practices permitted by that approval. This policy will be updated if the approved scope differs from the proposal below.
+If Reddit grants written approval for the personal API use described here, MarginScout will activate only the access and data practices permitted by that approval. This policy will be updated if the approved scope differs from the proposal below.
 
 ## 2. Information the proposed integration would process
 
@@ -32,19 +32,19 @@ MarginScout does not propose to collect private messages, chat content, private-
 
 MarginScout would use approved public posts to:
 
-- identify posts that may contain a request for professional services;
+- identify public posts that explicitly discuss or request freelance, creative, technical, or business services;
 - remove duplicates and obviously irrelevant records;
-- estimate whether a request matches a service the operator can responsibly fulfill;
+- classify relevance and organize matching posts within the developer's private dashboard;
 - place plausible records into a private inbox for human review; and
 - reconcile edits, removals, and deleted accounts.
 
-MarginScout does not automatically contact a Reddit user, apply for work, post, comment, vote, send a direct message, purchase a service, or make a final business decision.
+MarginScout does not automatically contact a Reddit user, apply for work, post, comment, vote, send a direct message, purchase a service, or make a final decision. If the developer chooses to respond, they will manually open the original post and interact through Reddit like a normal user.
 
 ## 4. Automated processing and AI
 
-The proposed baseline uses deterministic local rules for deduplication, filtering, service matching, recency, and review prioritization. Scores are decision-support signals only; a human controls all workflow and external actions.
+The proposed baseline uses deterministic local rules for deduplication, filtering, service matching, recency, and review prioritization. Scores are organizational signals only; the developer controls all workflow and external actions.
 
-Reddit content will not be sent to OpenAI or another third-party AI provider unless Reddit's written approval expressly permits that processing and this policy is updated to identify the processor, purpose, safeguards, and applicable retention. Reddit content will not be used to train an AI or machine-learning model.
+Optional AI use is limited to inference and classification. Reddit content will not be sent to OpenAI or another external AI provider unless Reddit's written approval expressly permits that processing and this policy is updated to identify the processor, purpose, safeguards, and applicable retention. Reddit content will not be used to train or fine-tune an AI or machine-learning model.
 
 ## 5. Retention
 
@@ -53,7 +53,7 @@ Unless Reddit approves a different period in writing, raw Reddit content and aut
 Expiry and deletion must traverse every retained copy, including:
 
 - source-ingestion records;
-- lead-review records and observations;
+- candidate-review records and observations;
 - assessment evidence and result snapshots;
 - model or agent payloads, if such processing is ever separately approved;
 - caches and exports; and
@@ -71,7 +71,7 @@ The proposed integration includes recurring reconciliation of retained records w
 
 ## 7. Sharing and sale
 
-MarginScout will not sell, license, redistribute, or expose Reddit data as a product, dataset, advertising audience, or third-party feed. It will not use Reddit data for targeted advertising, user profiling, surveillance, or re-identification.
+MarginScout will not sell, license, monetize, redistribute, or expose Reddit data or API access as a product, dataset, advertising audience, or external feed. It will not use Reddit data for targeted advertising, user profiling, surveillance, or re-identification.
 
 Information may be disclosed when required by applicable law or a valid legal process. No other sharing is proposed unless Reddit's written approval permits it and this policy is updated first.
 
@@ -80,7 +80,7 @@ Information may be disclosed when required by applicable law or a valid legal pr
 MarginScout is designed to:
 
 - keep OAuth credentials and API keys in runtime secrets rather than source code or database settings;
-- restrict access to the private operator environment;
+- restrict access to the developer's private environment;
 - use exact approved hosts, communities, endpoints, and request limits;
 - omit credentials and source bodies from application logs;
 - treat all source content as untrusted data rather than executable instructions; and
@@ -104,6 +104,6 @@ Material changes will be published in this file with an updated date. Live Reddi
 
 ## 11. Contact
 
-MarginScout project operator  
-**Privacy contact:** `dyuchuan@gmail.com`
+MarginScout developer
 
+**Privacy contact:** `dyuchuan@gmail.com`

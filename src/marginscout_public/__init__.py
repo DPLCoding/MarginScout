@@ -1,4 +1,4 @@
-"""Public, non-production MarginScout integration excerpt."""
+"""Public, non-operational MarginScout integration excerpt."""
 
 from .reddit_client import (
     ApprovalScope,
@@ -7,7 +7,7 @@ from .reddit_client import (
     NormalizedPost,
     RedditReadOnlyClient,
 )
-from .scoring import LeadScoreResult, LeadSignals, score_lead
+from .scoring import OpportunityScoreResult, OpportunitySignals, score_opportunity
 
 __all__ = [
     "ApprovalScope",
@@ -15,7 +15,7 @@ __all__ = [
     "HttpResponse",
     "NormalizedPost",
     "RedditReadOnlyClient",
-    "LeadScoreResult",
-    "LeadSignals",
-    "score_lead",
+    "OpportunityScoreResult",
+    "OpportunitySignals",
+    "score_opportunity",
 ]

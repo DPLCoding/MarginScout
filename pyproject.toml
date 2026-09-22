@@ -5,10 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "marginscout-public"
 version = "0.1.0"
-description = "Public MarginScout architecture and approval-gated integration excerpt"
+description = "Public engineering excerpt for a personal, single-user opportunity organization project"
 requires-python = ">=3.11"
 license = { file = "LICENSE.md" }
-authors = [{ name = "MarginScout project author" }]
+authors = [{ name = "David Plam" }]
 dependencies = [
   "fastapi>=0.115,<1",
 ]

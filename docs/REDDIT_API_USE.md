@@ -4,7 +4,7 @@ Status: **not approved and not active**. This document describes the access Marg
 
 ## Purpose
 
-MarginScout is a locally operated commercial decision-support tool. It would use approved public Reddit posts to identify posts in which a person or business appears to be requesting professional services. A human operator reviews every candidate. MarginScout does not contact Reddit users, automate replies, sell Reddit data, or provide a Reddit-data feed to third parties.
+MarginScout is a personal software engineering project operated privately by one developer through its own dashboard. It would use approved public Reddit posts to organize posts in which users explicitly discuss or request freelance, creative, technical, or business services. The developer reviews every candidate. MarginScout is not sold or offered to other users; it does not contact Reddit users, automate replies, monetize API access, redistribute Reddit content, or provide a Reddit-data feed to anyone else.
 
 ## Requested read scope
 
@@ -36,11 +36,11 @@ The system does not collect private messages, chat, votes by individual users, e
 
 1. Enforce current written approval, exact community scope, credentials, request budget, and deletion-reconciliation health before any request.
 2. Normalize bounded newest-post results and deduplicate by Reddit post ID and content hash.
-3. Apply deterministic local filters for clear buyer intent, obvious offers/spam, already-filled requests, and irrelevant content.
-4. Present plausible candidates to the operator for human review.
-5. Keep Reddit content out of third-party AI processing unless the written agreement explicitly permits that processing. The requested baseline is deterministic-only.
+3. Apply deterministic local filters for explicit service-request language, obvious offers/spam, already-filled requests, and irrelevant content.
+4. Present plausible candidates to the developer for private human review.
+5. Permit optional AI inference/classification only if the written approval expressly allows external model processing; otherwise keep Reddit processing deterministic-only.
 
-Reddit content is not used to train a model. Source text is treated as untrusted data and cannot trigger tools or external actions.
+Reddit content is not used to train or fine-tune a model. Source text is treated as untrusted data and cannot trigger tools or external actions.
 
 ## Retention and deletion
 
@@ -49,7 +49,7 @@ Reddit content is not used to train a model. Source text is treated as untrusted
 - Source deletion traverses ingestion records, review records, observations, evidence snapshots, model payloads, caches, and any promoted local record containing source text.
 - Deleted Reddit content is not retained in anonymized or tombstoned form. A non-content deletion audit is retained only if the written agreement expressly permits it.
 - Expiry or failed reconciliation disables further collection.
-- The operator can trigger source-record redaction and respond to a deletion request.
+- The developer can trigger source-record redaction and respond to a deletion request.
 
 Final behavior will follow the written agreement if it is stricter than these proposed defaults.
 
@@ -61,8 +61,7 @@ Every displayed live record will identify Reddit as its source, link to the orig
 
 - HTML scraping or unauthenticated JSON/RSS workarounds;
 - votes, submissions, comments, moderation actions, chat, or direct messages;
-- automated outreach or unsolicited communication;
+- automated outreach, follows, or unsolicited communication;
 - user profiling, re-identification, or sensitive-trait inference;
-- data resale, redistribution, advertising targeting, or model training; and
+- data resale, monetization, redistribution, advertising targeting, or model training/fine-tuning; and
 - attempts to evade access controls, rate limits, removals, or app labeling.
-

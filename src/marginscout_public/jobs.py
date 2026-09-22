@@ -36,7 +36,7 @@ class BackgroundJob:
 
 
 class JobStore(Protocol):
-    """Production implementations use an atomic persistent transaction."""
+    """Persistent implementations use an atomic transaction."""
 
     def get(self, job_id: UUID) -> BackgroundJob | None: ...
 
@@ -187,4 +187,3 @@ def _aware(value: datetime | None) -> datetime:
     if timestamp.tzinfo is None:
         raise ValueError("job timestamps must be timezone-aware")
     return timestamp
-

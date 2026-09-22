@@ -19,15 +19,18 @@ class PublicApiTests(unittest.TestCase):
     def test_capabilities_are_truthful_about_external_access(self) -> None:
         response = self.client.get("/api/v1/capabilities")
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["personal_single_user"])
         self.assertTrue(response.json()["deterministic_assessment"])
         self.assertFalse(response.json()["live_reddit"])
         self.assertFalse(response.json()["automated_outreach"])
+        self.assertFalse(response.json()["automated_reddit_interaction"])
+        self.assertFalse(response.json()["reddit_content_model_training"])
 
     def test_assessment_returns_factors_and_human_authority(self) -> None:
         response = self.client.post(
-            "/api/v1/leads/assess",
+            "/api/v1/opportunities/assess",
             json={
-                "buyer_intent": 95,
+                "request_intent": 95,
                 "service_fit": 90,
                 "specificity": 80,
                 "recency": 90,
@@ -47,9 +50,9 @@ class PublicApiTests(unittest.TestCase):
 
     def test_assessment_rejects_invalid_signal(self) -> None:
         response = self.client.post(
-            "/api/v1/leads/assess",
+            "/api/v1/opportunities/assess",
             json={
-                "buyer_intent": 101,
+                "request_intent": 101,
                 "service_fit": 0,
                 "specificity": 0,
                 "recency": 0,
@@ -64,4 +67,3 @@ class PublicApiTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

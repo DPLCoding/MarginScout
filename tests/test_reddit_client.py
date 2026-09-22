@@ -40,14 +40,14 @@ class FakeTransport:
         return self.response
 
 
-def approval(*, commercial: bool = True) -> ApprovalScope:
+def approval(*, intended_use: bool = True) -> ApprovalScope:
     return ApprovalScope(
         approval_reference="synthetic-approval-reference",
         approved_by="synthetic-reviewer",
         effective_at=NOW - timedelta(days=1),
         expires_at=NOW + timedelta(days=30),
         permitted_communities=frozenset({"forhire"}),
-        commercial_use_approved=commercial,
+        intended_use_approved=intended_use,
         max_requests_per_hour=12,
         max_items_per_request=25,
         retention_hours=48,
@@ -85,16 +85,16 @@ class RedditClientTests(unittest.TestCase):
         transport = FakeTransport(response)
         client = RedditReadOnlyClient(
             approval=scope,
-            user_agent="windows:marginscout:v0.1 (by /u/example_operator)",
+            user_agent="windows:marginscout:v0.1 (by /u/example_developer)",
             token_provider=tokens,
             transport=transport,
             clock=lambda: NOW,
         )
         return client, tokens, transport
 
-    def test_missing_commercial_approval_fails_before_credentials_or_transport(self) -> None:
+    def test_missing_intended_use_approval_fails_before_credentials_or_transport(self) -> None:
         client, tokens, transport = self.make_client(
-            approval(commercial=False), listing_response()
+            approval(intended_use=False), listing_response()
         )
 
         with self.assertRaises(ApprovalRequiredError):
@@ -124,7 +124,7 @@ class RedditClientTests(unittest.TestCase):
             url,
             "https://oauth.reddit.com/r/forhire/new?limit=10&raw_json=1",
         )
-        self.assertEqual(headers["User-Agent"], "windows:marginscout:v0.1 (by /u/example_operator)")
+        self.assertEqual(headers["User-Agent"], "windows:marginscout:v0.1 (by /u/example_developer)")
         self.assertEqual(headers["Accept"], "application/json")
         self.assertTrue(headers["Authorization"].startswith("Bearer "))
         self.assertEqual(timeout, 10.0)
@@ -191,4 +191,3 @@ class RetentionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

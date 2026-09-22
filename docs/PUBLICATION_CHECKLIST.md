@@ -10,7 +10,7 @@ Replace the placeholders in `README.md`, `SECURITY.md`, `PRIVACY.md`, and `docs/
 rg -n "<[A-Z_]+>" .
 ```
 
-Use a public contact address. Do not paste a Reddit client secret, refresh token, OpenAI key, database URL, or production hostname into any document.
+Use a public contact address. Do not paste a Reddit client secret, refresh token, OpenAI key, database URL, or private deployment hostname into any document.
 
 ## 2. Run the zero-network checks
 
@@ -36,7 +36,7 @@ git diff --cached --stat
 git diff --cached
 ```
 
-Confirm that the staged files match `PUBLIC_FILES.txt`. In particular, there must be no `.env`, database, log, backup, screenshot containing personal information, private plan, copied production module, or parent-directory file.
+Confirm that the staged files match `PUBLIC_FILES.txt`. In particular, there must be no `.env`, database, log, backup, screenshot containing personal information, private plan, copied private module, or parent-directory file.
 
 ## 4. Commit locally
 

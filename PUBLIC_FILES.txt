@@ -10,7 +10,7 @@ docs/ARCHITECTURE.md
 docs/PUBLICATION_CHECKLIST.md
 docs/REDDIT_API_APPLICATION.md
 docs/REDDIT_API_USE.md
-examples/LeadAssessmentCard.tsx
+examples/OpportunityAssessmentCard.tsx
 pyproject.toml
 src/marginscout_public/__init__.py
 src/marginscout_public/api.py

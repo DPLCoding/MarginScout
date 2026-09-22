@@ -1,6 +1,6 @@
 # Reddit API access application draft
 
-Replace every angle-bracket placeholder and verify the final text against Reddit's current form and policies before submitting. Be direct that this is a commercial lead-research use case; do not describe it as personal or non-commercial.
+Verify this statement against Reddit's current form and policies before submitting. It describes MarginScout's current purpose as a personal, single-user developer application and does not claim that API access has already been approved.
 
 ## Contact and source code
 
@@ -11,13 +11,13 @@ Replace every angle-bracket placeholder and verify the final text against Reddit
 - Public source-review repository: `https://github.com/DPLCoding/MarginScout`
 - Privacy and deletion policy: `https://github.com/DPLCoding/MarginScout/blob/main/PRIVACY.md`
 
-The linked repository is explicitly a sanitized architecture and integration excerpt, not the complete private production repository. It contains the proposed approval-gated client boundary, synthetic tests, data-handling documentation, and no secrets or live Reddit transport.
+The linked repository is explicitly a sanitized architecture and integration excerpt, not the complete private development repository. It contains the proposed approval-gated client boundary, synthetic tests, data-handling documentation, and no secrets or concrete live Reddit transport.
 
 ## Project summary
 
-MarginScout is a single-operator, commercial decision-support application that helps me evaluate potential service-work opportunities and whether I have an appropriate fulfillment option. I am requesting read-only API access to monitor a small, fixed allowlist of public subreddits for newest posts that may contain requests for professional services. A human will review every candidate before taking any action outside Reddit. MarginScout will not automatically contact users, post, comment, vote, send messages, or perform moderation actions.
+MarginScout is a personal software engineering and portfolio project operated privately by me as its only user. It is an external application with its own private dashboard that helps me organize and evaluate publicly available posts in which Reddit users explicitly discuss or request freelance, creative, technical, or business services. I am requesting read-only API access to retrieve recent public posts from a small, fixed allowlist of subreddits for relevance filtering, classification, and private review.
 
-I understand this use may support revenue-generating work and am therefore requesting explicit written approval for commercial use. I will not sell, license, redistribute, or expose Reddit data as a product or feed.
+MarginScout is not sold, hosted for other users, or offered as a service. I will not sell, license, monetize, redistribute, or expose Reddit data or API access as a product or feed. The application will not automatically contact Reddit users, post, comment, vote, follow accounts, send messages, or perform moderation actions. If I choose to respond to a relevant post, I will manually open the original Reddit post and interact through Reddit as a normal user.
 
 ## Exact requested access
 
@@ -34,7 +34,7 @@ There will be no scheduled keyword search. If targeted or historical search is c
 
 For each approved public post, MarginScout proposes to process the post ID, permalink, subreddit, title, self-text, creation time, author name when permitted, score, comment count, and deletion/removal state. It will not access private messages, chat, private communities, individual voting data, email addresses, IP addresses, or device data.
 
-Processing is local and deterministic by default: stable-ID/content deduplication, keyword and intent filtering, service-category matching, recency scoring, and routing to a human review inbox. Reddit content will not be sent to OpenAI or another third-party model unless Reddit's written approval expressly allows that processing. It will not be used for model training or sensitive-trait inference.
+Processing is local and deterministic by default: stable-ID/content deduplication, request-language filtering, service-category matching, recency scoring, and routing to my private review inbox. Optional AI use is limited to inference/classification with structured output. Reddit content will not be sent to OpenAI or another external model provider unless Reddit's written approval expressly permits that processing. It will not be used to train or fine-tune a model, build a dataset, profile users, or infer sensitive traits.
 
 ## Retention, deletion, and security
 
@@ -48,14 +48,13 @@ Live Reddit records will link to the original post and identify Reddit as the so
 
 Please confirm in writing:
 
-1. whether this commercial lead-research purpose is approved;
+1. whether the personal, single-user, read-only purpose described above is approved;
 2. the permitted OAuth client/application identity;
 3. the approved communities, fields, endpoints, limits, and polling frequency;
 4. the required retention and deletion-reconciliation interval;
 5. the required attribution and app-label behavior;
-6. whether any third-party AI classification is permitted (it will remain disabled unless explicitly approved);
+6. whether external AI inference/classification is permitted (it will remain disabled for Reddit content unless explicitly approved);
 7. any required privacy, security, audit, geographic, or user-deletion controls; and
 8. any fees, agreement term, review date, or additional restrictions.
 
 I will not activate live access until approval is granted and MarginScout has been configured to enforce the approved scope.
-

@@ -2,7 +2,7 @@
 
 ## Product boundary
 
-MarginScout is a single-operator decision-support application. It separates source evidence, deterministic business rules, optional model interpretation, and human workflow state so that an uncertain model response cannot silently become a financial fact or external action.
+MarginScout is a personal software engineering project operated privately by one developer. It separates source evidence, deterministic rules, optional model interpretation, and human workflow state so that an uncertain model response cannot silently become an asserted fact or external action. The application is not sold, hosted for other users, or offered as a service.
 
 The complete product is private. This document intentionally describes components and controls without exposing proprietary prompts, scoring weights, provider records, or deployment details.
 
@@ -33,7 +33,7 @@ flowchart TB
 - **PostgreSQL** is the system of record and durable job queue.
 - **Workers** claim idempotent jobs atomically and persist progress, retries, costs, and outcomes.
 - **Source adapters** are the only components permitted to perform approved external reads.
-- **Model specialists** have no tools and cannot send messages, purchase services, or alter deterministic calculations.
+- **Model specialists** perform bounded inference/classification, have no tools, and cannot send messages, purchase services, or alter deterministic calculations. Source content is not training or fine-tuning data.
 
 ## Opportunity lifecycle
 
@@ -44,18 +44,18 @@ flowchart LR
     Filter[Local high-recall filter]
     Assess[Deterministic assessment]
     OptionalAI[Optional structured AI extraction]
-    Review[Human Lead Inbox review]
+    Review[Private candidate review]
     Qualify[Supply and economics qualification]
-    Promote[Manual promotion]
+    Save[Manual save for follow-up]
 
     Capture --> Normalize --> Filter --> Assess
     Assess -. separately gated .-> OptionalAI
     Assess --> Review
     OptionalAI --> Review
-    Review --> Qualify --> Promote
+    Review --> Qualify --> Save
 ```
 
-A discovered record begins as source evidence. It becomes a lead only when it merits review, and it becomes a commercial opportunity only after explicit operator promotion. Filtering, ranking, or model output cannot perform that promotion.
+A discovered record begins as source evidence and becomes a review candidate only when it merits the developer's attention. Saving it for further private evaluation always requires an explicit human action. Filtering, ranking, or model output cannot contact anyone or initiate a Reddit interaction.
 
 ## Reddit feed-first proposal
 
@@ -67,8 +67,8 @@ sequenceDiagram
     participant Q as Durable queue
     participant G as Approval gate
     participant R as Reddit OAuth API
-    participant P as Lead pipeline
-    participant H as Human operator
+    participant P as Candidate pipeline
+    participant H as Developer
 
     S->>Q: Enqueue due source window
     Q->>G: Claim idempotent read job
@@ -94,7 +94,7 @@ Marketplace and social content is untrusted data. It is character-bounded, norma
 
 ### AI output
 
-Optional model output must satisfy structured schemas and cite source evidence. It may suggest extracted requirements or ambiguities. It cannot override monetary arithmetic, approval gates, hard risk controls, lifecycle status, or external permissions.
+Optional model output is limited to inference/classification, must satisfy structured schemas, and must cite source evidence. It may suggest extracted requirements or ambiguities. It cannot override deterministic calculations, approval gates, hard risk controls, lifecycle status, or external permissions. Reddit content is not used to train or fine-tune a model.
 
 ### Secrets
 
@@ -102,7 +102,7 @@ Secrets remain in the runtime environment or a deployment secret manager. Databa
 
 ### External actions
 
-MarginScout exposes no automated apply, buy, post, comment, direct-message, email, or payment workflow. External communication remains a deliberate human action outside this source adapter.
+MarginScout exposes no automated apply, buy, post, comment, vote, follow, direct-message, email, moderation, or payment workflow. If the developer chooses to respond, they manually open the original Reddit post and interact through Reddit as a normal user.
 
 ## Reliability and observability
 
@@ -112,4 +112,3 @@ MarginScout exposes no automated apply, buy, post, comment, direct-message, emai
 - Partial source failures remain visible rather than being flattened into success.
 - Runs preserve source provenance, decision counts, warnings, latency, token usage, and estimated cost.
 - Readiness distinguishes API-process health from database and durable-queue availability.
-

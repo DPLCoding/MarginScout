@@ -6,14 +6,14 @@ from typing import Annotated
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-from .scoring import LeadSignals, score_lead
+from .scoring import OpportunitySignals, score_opportunity
 
 
 Percent = Annotated[Decimal, Field(ge=0, le=100)]
 
 
-class LeadAssessmentRequest(BaseModel):
-    buyer_intent: Percent
+class OpportunityAssessmentRequest(BaseModel):
+    request_intent: Percent
     service_fit: Percent
     specificity: Percent
     recency: Percent
@@ -30,7 +30,7 @@ def create_app() -> FastAPI:
         version="0.1.0",
         description=(
             "A zero-network demonstration of deterministic assessment and capability reporting. "
-            "This is not the production MarginScout API."
+            "This is not the complete private MarginScout API."
         ),
     )
 
@@ -41,16 +41,19 @@ def create_app() -> FastAPI:
     @app.get("/api/v1/capabilities")
     def capabilities() -> dict[str, object]:
         return {
+            "personal_single_user": True,
             "deterministic_assessment": True,
             "synthetic_tests": True,
             "live_reddit": False,
             "automated_outreach": False,
-            "production_code_included": False,
+            "automated_reddit_interaction": False,
+            "reddit_content_model_training": False,
+            "complete_application_included": False,
         }
 
-    @app.post("/api/v1/leads/assess")
-    def assess_lead(payload: LeadAssessmentRequest) -> dict[str, object]:
-        result = score_lead(LeadSignals(**payload.model_dump()))
+    @app.post("/api/v1/opportunities/assess")
+    def assess_opportunity(payload: OpportunityAssessmentRequest) -> dict[str, object]:
+        result = score_opportunity(OpportunitySignals(**payload.model_dump()))
         return {
             "score": str(result.score),
             "confidence": str(result.confidence),
@@ -72,4 +75,3 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-
