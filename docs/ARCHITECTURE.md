@@ -2,7 +2,7 @@
 
 ## Product boundary
 
-MarginScout is a personal software engineering project operated privately by one developer. It separates source evidence, deterministic rules, optional model interpretation, and human workflow state so that an uncertain model response cannot silently become an asserted fact or external action. The application is not sold, hosted for other users, or offered as a service.
+MarginScout is a personal multi-source opportunity discovery and provider intelligence project operated privately by one developer. It separates source evidence, source normalization, deterministic rules, optional model interpretation, and human workflow state so that neither a platform nor an uncertain model response can become the product's control plane. The application is not sold, hosted for other users, or offered as a service.
 
 The complete product is private. This document intentionally describes components and controls without exposing proprietary prompts, scoring weights, provider records, or deployment details.
 
@@ -39,7 +39,7 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    Capture[Manual or approved source capture]
+    Capture[Manual, screenshot, web, or approved-source capture]
     Normalize[Normalize and deduplicate]
     Filter[Local high-recall filter]
     Assess[Deterministic assessment]
@@ -55,11 +55,11 @@ flowchart LR
     Review --> Qualify --> Save
 ```
 
-A discovered record begins as source evidence and becomes a review candidate only when it merits the developer's attention. Saving it for further private evaluation always requires an explicit human action. Filtering, ranking, or model output cannot contact anyone or initiate a Reddit interaction.
+A discovered record begins as source evidence and becomes a review candidate only when it merits the developer's attention. Accepted candidates normalize into the same Opportunity model regardless of origin. Saving it for further private evaluation always requires an explicit human action. Filtering, ranking, or model output cannot contact anyone or initiate a platform interaction.
 
-## Reddit feed-first proposal
+## Optional Reddit API adapter
 
-The proposed Reddit integration polls only bounded newest-post listings for an approved community allowlist. It does not schedule keyword-by-community search fan-out.
+The official Reddit API request was not approved, so this adapter is disabled. Manual research/import is the supported mode. The sequence below documents the preserved fail-closed design if approved access becomes available later; it would be one input to the same candidate and Opportunity pipeline.
 
 ```mermaid
 sequenceDiagram

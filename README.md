@@ -1,8 +1,8 @@
 # MarginScout
 
-MarginScout is a personal, single-user software engineering project used privately by its developer. It explores how an external dashboard can organize and evaluate publicly available posts about freelance, creative, technical, and business-service opportunities. This public repository is a deliberately limited engineering portfolio and API-review package with architecture documentation and a runnable sample of the read-only source-integration boundary.
+MarginScout is a personal, single-user, multi-source opportunity discovery and provider intelligence project. It explores how an external dashboard can organize service requests from manual research, Facebook, Reddit, public-web results, screenshots, and future sources; apply one analysis pipeline; and compare potential fulfillment options. This public repository is a deliberately limited engineering portfolio with architecture documentation and runnable sanitized excerpts.
 
-> MarginScout is not sold, hosted for other users, or offered as a data-distribution or outreach service. This is not the complete private development repository, and it contains no credentials, real user or provider data, private scoring configuration, model prompts, deployment configuration, or concrete live Reddit transport. Live Reddit access is disabled unless Reddit approves the stated personal, read-only use.
+> MarginScout is not sold, hosted for other users, or offered as a data-distribution or outreach service. This is not the complete private development repository, and it contains no credentials, real user or provider data, private scoring configuration, model prompts, deployment configuration, or operational social-platform connector. Reddit is one optional source; official API collection is disabled.
 
 ## What the private application does
 
@@ -41,9 +41,9 @@ flowchart LR
 
 The complete private application uses Next.js, React, TypeScript, FastAPI, Pydantic, SQLAlchemy, Alembic, PostgreSQL, Docker Compose, pytest, and optional model-based inference. See [the architecture overview](docs/ARCHITECTURE.md) for the trust boundaries and data flow.
 
-## Public source excerpt
+## Public source excerpts
 
-The included Python package demonstrates several application-style boundaries without publishing the complete private project:
+The included Python package demonstrates several application-style boundaries without publishing the complete private project. The Reddit client is retained as one fail-closed adapter example, not as MarginScout's foundation:
 
 - a frozen Reddit approval scope and strict community allowlist;
 - a read-only `/new` listing request path with injected OAuth and transport protocols;
@@ -85,11 +85,11 @@ uvicorn marginscout_public.api:app --reload --port 8010
 
 Its interactive documentation is then available at `http://localhost:8010/docs`.
 
-## Reddit API request status
+## Optional Reddit adapter status
 
-MarginScout currently processes only developer-supplied content and bundled synthetic fixtures. The proposed live integration is read-only and limited to newest-post listings in an explicitly approved subreddit allowlist. It does not vote, post, comment, message, scrape HTML, or automate outreach. If the developer chooses to respond to a post, they will open the original Reddit page and interact manually as a normal Reddit user.
+MarginScout supports manual Reddit research and developer-supplied imports without API credentials. The official API request was not approved, so automatic collection remains disabled. The preserved adapter excerpt documents the proposed fail-closed, read-only boundary for possible future approval; it is not active and there is no scraping fallback. If the developer chooses to respond to a post, they open the original Reddit page and interact manually as a normal Reddit user.
 
-The intended collection, retention, and deletion behavior is described in [Reddit API use](docs/REDDIT_API_USE.md) and the public [Privacy and Deletion Policy](PRIVACY.md). A transparent draft for the access request is in [Reddit API application](docs/REDDIT_API_APPLICATION.md). Implementation and activation remain contingent on Reddit's written approval and the exact scope of the resulting agreement.
+The proposed collection, retention, and deletion behavior is described in [Reddit API use](docs/REDDIT_API_USE.md) and the public [Privacy and Deletion Policy](PRIVACY.md). The prior request text remains in [Reddit API application](docs/REDDIT_API_APPLICATION.md) as historical review material. Any future activation remains contingent on written approval and the exact scope of that agreement.
 
 ## Repository scope
 

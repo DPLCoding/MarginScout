@@ -55,7 +55,7 @@ After publishing:
 - confirm your contact and repository/privacy URLs are correct;
 - check the Git history contains only the curated public files;
 - enable secret scanning if your GitHub plan provides it; and
-- use the public repository URL in the Reddit application while clearly stating that it is a sanitized excerpt.
+- if a future approved-access review is pursued, use the public repository URL while clearly stating that it is a sanitized excerpt; the historical request was not approved.
 
 ## If a secret is exposed
 

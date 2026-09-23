@@ -1,6 +1,8 @@
-# Reddit API access application draft
+# Reddit API access application (historical)
 
-Verify this statement against Reddit's current form and policies before submitting. It describes MarginScout's current purpose as a personal, single-user developer application and does not claim that API access has already been approved.
+> Status: this request was not approved. MarginScout does not claim or use official Reddit API access. This document is retained only as a record of the proposed compliance scope.
+
+The submitted statement described MarginScout's intended purpose as a personal, single-user developer application and did not claim that API access had already been approved.
 
 ## Contact and source code
 
